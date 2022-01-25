@@ -76,7 +76,7 @@ Experimental: **Ubuntu Linux 20.04 LTS** and **Python3**
 ```bash
 $ sudo apt-get install ansible git aptitude
 $ git clone https://github.com/containernet/containernet.git
-$ cd containernet/ansible
+$ cd BlockchainFANET/ansible
 $ sudo ansible-playbook -i "localhost," -c local install.yml
 $ cd ..
 ```
@@ -101,20 +101,20 @@ Containernet can be executed within a privileged Docker container (nested contai
 
 ```bash
 # build the container locally
-$ docker build -t containernet/containernet .
+$ docker build -t BlockchainFANET/containernet .
 
 # or pull the latest pre-build container
-$ docker pull containernet/containernet
+$ docker pull BlockchainFANET/containernet
 ```
 
 #### Run
 
 ```bash
 # run interactive container and directly start containernet example
-$ docker run --name containernet -it --rm --privileged --pid='host' -v /var/run/docker.sock:/var/run/docker.sock containernet/containernet
+$ docker run --name containernet -it --rm --privileged --pid='host' -v /var/run/docker.sock:/var/run/docker.sock BlockchainFANET/containernet
 
 # run interactive container and drop to shell
-$ docker run --name containernet -it --rm --privileged --pid='host' -v /var/run/docker.sock:/var/run/docker.sock containernet/containernet /bin/bash
+$ docker run --name containernet -it --rm --privileged --pid='host' -v /var/run/docker.sock:/var/run/docker.sock BlockchainFANET/containernet /bin/bash
 ```
 
 ---

@@ -44,7 +44,6 @@ net.ping([d1, d2])
 net.ping([d1, d3])
 net.ping([d1, d5])
 net.ping([d5, d4])
-net.ping([ch1, bs1])
 net.ping([bs1, d1])
 
 info('*** Running CLI\n')

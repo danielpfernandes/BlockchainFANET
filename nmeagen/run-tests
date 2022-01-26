@@ -1,0 +1,33 @@
+#!/usr/bin/env node
+
+const path = require('path');
+const puppeteer = require('puppeteer');
+
+(async () => {
+  const browser = await puppeteer.launch();
+  const page = await browser.newPage();
+  const fileName = process.argv[2] || 'index.html';
+
+  // Open NMEA Generator inside a headless browser.
+  try {
+    await page.goto(`file:${path.join(__dirname, fileName)}`);
+    await page.waitForTimeout(1000);
+  } catch (error) {
+    console.error(`Could not open file: '${fileName}'.`);
+    process.exit(1);
+  }
+
+  // Use console messages to detect test failure/success.
+  page.on('console', (message) => {
+    const testResult = message.text();
+    if (testResult.startsWith('[FAIL]')) {
+      console.error(testResult);
+      process.exit(1);
+    }
+    console.log(testResult);
+  });
+
+  // Tests are executed by invoking runTests() inside the browser.
+  await page.evaluate('runTests()');
+  await browser.close();
+})();

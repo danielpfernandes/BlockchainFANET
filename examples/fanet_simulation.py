@@ -17,11 +17,52 @@ info('*** Adding base station\n')
 bs1 = net.addDocker('base1', ip='10.0.0.1', dimage="ubuntu:trusty")
 
 info('*** Adding docker drones\n')
-d1 = net.addDocker('drone1', ip='10.0.0.249', dimage="containernet_example:sawtoothAll", mem_limit=50182016, cpu_shares=5, cpu_period=50000, cpu_quota=10000)
-d2 = net.addDocker('drone2', ip='10.0.0.250', dimage="containernet_example:sawtoothAll", mem_limit=50182016, cpu_shares=5, cpu_period=50000, cpu_quota=10000)
-d3 = net.addDocker('drone3', ip='10.0.0.251', dimage="containernet_example:sawtoothAll", mem_limit=50182016, cpu_shares=5, cpu_period=50000, cpu_quota=10000)
-d4 = net.addDocker('drone4', ip='10.0.0.252', dimage="containernet_example:sawtoothAll", mem_limit=50182016, cpu_shares=5, cpu_period=50000, cpu_quota=10000)
-d5 = net.addDocker('drone5', ip='10.0.0.253', dimage="containernet_example:sawtoothAll", mem_limit=50182016, cpu_shares=5, cpu_period=50000, cpu_quota=10000)
+d1 = net.addDocker('drone1', 
+                    ip='10.0.0.249', 
+                    dimage="containernet_example:sawtoothAll",
+                    dcmd="sawtooth keygen && sawadm keygen",
+                    ports=[4004,8008,8800,5050,3030],
+                    volumes=["/tmp/drone1:/root"],
+                    mem_limit=50182016,
+                    cpu_shares=5, 
+                    cpu_period=50000, 
+                    cpu_quota=10000)
+d2 = net.addDocker('drone2', ip='10.0.0.250',
+                    dimage="containernet_example:sawtoothAll",
+                    dcmd="sawtooth keygen && sawadm keygen",
+                    ports=[4004,8008,8800,5050,3030],
+                    volumes=["/tmp/drone2:/root"],
+                    mem_limit=50182016,
+                    cpu_shares=5, 
+                    cpu_period=50000, 
+                    cpu_quota=10000)
+d3 = net.addDocker('drone3', ip='10.0.0.251',
+                    dimage="containernet_example:sawtoothAll", 
+                    dcmd="sawtooth keygen && sawadm keygen",
+                    ports=[4004,8008,8800,5050,3030],
+                    volumes=["/tmp/drone3:/root"],
+                    mem_limit=50182016,
+                    cpu_shares=5, 
+                    cpu_period=50000, 
+                    cpu_quota=10000)
+d4 = net.addDocker('drone4', ip='10.0.0.252',
+                    dimage="containernet_example:sawtoothAll",
+                    dcmd="sawtooth keygen && sawadm keygen",
+                    ports=[4004,8008,8800,5050,3030],
+                    volumes=["/tmp/drone4:/root"],
+                    mem_limit=50182016,
+                    cpu_shares=5, 
+                    cpu_period=50000, 
+                    cpu_quota=10000)
+d5 = net.addDocker('drone5', ip='10.0.0.253',
+                    dimage="containernet_example:sawtoothAll",
+                    dcmd="sawtooth keygen && sawadm keygen",
+                    ports=[4004,8008,8800,5050,3030],
+                    volumes=["/tmp/drone5:/root"],
+                    mem_limit=50182016,
+                    cpu_shares=5, 
+                    cpu_period=50000, 
+                    cpu_quota=10000)
 
 # info('*** Adding swarm head\n')
 ch1 = net.addSwitch('head1')

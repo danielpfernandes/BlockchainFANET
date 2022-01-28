@@ -70,7 +70,7 @@ net.addLink(d4, ch1, cls=TCLink, delay='100ms', bw=1)
 net.addLink(d5, ch1, cls=TCLink, delay='100ms', bw=1)
 
 # info('*** Creating links between drone d1 and base station\n')
-net.addLink(bs1, ch1)
+net.addLink(bs1, ch1, cls=TCLink, delay='2ms', bw=100)
 
 info('*** Starting network\n')
 net.start()

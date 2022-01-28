@@ -1,0 +1,11 @@
+FROM hyperledger/sawtooth-all:1.0
+
+RUN apt-get update && apt-get install -y \
+    net-tools \
+    iputils-ping \
+    iproute \
+    netcat \
+    iperf \
+    sawtooth
+
+CMD /bin/bash

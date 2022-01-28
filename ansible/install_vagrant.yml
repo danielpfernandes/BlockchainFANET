@@ -14,7 +14,7 @@
 
   - name: Clone repo
     git:
-      repo: https://github.com/containernet/containernet.git
+      repo: https://github.com/BlockchainFANET/containernet.git
       dest: /var/containernet
       version: master
     when:
@@ -58,7 +58,7 @@
     pip: name=python-iptables state=latest
 
   - name: build and install Containernet (using Mininet installer)
-    shell: containernet/util/install.sh
+    shell: BlockchainFANET/util/install.sh
     args:
       chdir: /var
 

@@ -14,7 +14,11 @@ info('*** Adding controller\n')
 net.addController('c0')
 
 info('*** Adding base station\n')
-bs1 = net.addDocker('base1', ip='10.0.0.1', dimage="ubuntu:trusty")
+bs1 = net.addDocker('base1', 
+                    ip='10.0.0.1', 
+                    dimage="ubuntu:trusty",
+                    ports=[4004,8008,8800,5050,3030],
+                    volumes=["/tmp/base1:/root"])
 
 info('*** Adding docker drones\n')
 d1 = net.addDocker('drone1', 
@@ -81,6 +85,22 @@ net.ping([d1, d3])
 net.ping([d1, d5])
 net.ping([d5, d4])
 net.ping([bs1, d1])
+
+info('*** Generating drone sawtooth & validators keypairs\n')
+d1.cmd("sawtooth keygen")
+d2.cmd("sawtooth keygen")
+d3.cmd("sawtooth keygen")
+d4.cmd("sawtooth keygen")
+d5.cmd("sawtooth keygen")
+d1.cmd("sawadm keygen")
+d2.cmd("sawadm keygen")
+d3.cmd("sawadm keygen")
+d4.cmd("sawadm keygen")
+d5.cmd("sawadm keygen")
+
+info('*** Generating base station sawtooth & validators keypairs\n')
+bs1.cmd("sawtooth keygen")
+bs1.cmd("sawadm keygen")
 
 info('*** Running CLI\n')
 CLI(net)

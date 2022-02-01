@@ -1,5 +1,4 @@
-FROM hyperledger/sawtooth-all:1.0
-
+FROM hyperledger/sawtooth-all:latest
 RUN apt-get update && apt-get install -y \
     net-tools \
     iputils-ping \
